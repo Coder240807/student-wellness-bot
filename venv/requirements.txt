@@ -1,6 +1,0 @@
-streamlit
-pandas
-nltk
-groq
-sqlalchemy
-plotly
