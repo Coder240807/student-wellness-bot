@@ -18,4 +18,5 @@ INSIGHTS = [
     "Grounding exercises (like the 5-4-3-2-1 technique) are proven to lower immediate heart rate during stress.",
 ]
 
-GROQ_API_KEY = "PASTE_YOUR_KEY_HERE"
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+
