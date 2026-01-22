@@ -3,8 +3,19 @@ import datetime
 from sqlalchemy import text
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
-# Initialize the sentiment analyzer once
-analyzer = SentimentIntensityAnalyzer()
+# LAZY ANALYZER - creates on first use, auto-downloads
+def get_analyzer():
+    try:
+        analyzer = SentimentIntensityAnalyzer()
+        return analyzer
+    except LookupError:
+        import nltk
+        nltk.download('vader_lexicon', quiet=True)
+        return SentimentIntensityAnalyzer()
+
+# Replace ALL analyzer.polarity_scores() calls with:
+# get_analyzer().polarity_scores(text)
+analyzer = get_analyzer()
 
 def init_db(conn):
     """Initializes the database tables and seeds initial data if empty."""
