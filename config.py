@@ -1,7 +1,6 @@
 import os
-from dotenv import load_dotenv
-load_dotenv()
-api_key = os.getenv("GROQ_API_KEY")
+import streamlit as st
+
 HELPLINES = {
     "India": {"Name": "Tele-MANAS / KIRAN", "Number": "14416 / 1800-599-0019"},
     "USA": {"Name": "988 Suicide & Crisis Lifeline", "Number": "988"},
@@ -18,5 +17,5 @@ INSIGHTS = [
     "Grounding exercises (like the 5-4-3-2-1 technique) are proven to lower immediate heart rate during stress.",
 ]
 
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
-
+# Streamlit Cloud secrets (set in dashboard) OR local .env fallback
+GROQ_API_KEY = st.secrets.get("GROQ_API_KEY") or os.getenv("GROQ_API_KEY")
